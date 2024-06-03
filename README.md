@@ -1,4 +1,5 @@
-# reference_parser
+# reference_parser_ssai
+Fork of reference_parser with additional parameters for existing parsers and function for returning original string with refs.
 A dart package that parses strings for bible references. You can parse single references or
 multiple references from a string in a variety of formats and also identify a text to
 its potential match in the bible.
@@ -39,9 +40,14 @@ This will return a reference object describing 'Matthew 2:4-10'.
 use the `parseAllReference` to retrieve all references within a string.
 
 ```dart
-var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2-3');
+var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2-3', ignoreIs: true);
 ```
-**Note**: The word 'is' will be parsed as the book of Isaiah.
+**Note**: The word 'is' will NOT be parsed as the book of Isaiah.
+
+```dart
+var refs = parseReferencesAndReplaceString('I enjoy reading Gen 5:7 and 1Co 2-3.', ignoreIs: true);
+```
+This will return "I enjoy reading Genesis 5:7 and 1 Corinthians 2-3."
 
 ## Identifying References
 import the identification library with:
