@@ -1,7 +1,7 @@
-import 'package:reference_parser/src/model/Reference.dart';
-import 'package:reference_parser/src/model/Verse.dart';
-import 'package:reference_parser/src/model/Chapter.dart';
-import 'package:reference_parser/src/util/VerseEnum.dart';
+import 'package:reference_parser_ssai/src/model/Reference.dart';
+import 'package:reference_parser_ssai/src/model/Verse.dart';
+import 'package:reference_parser_ssai/src/model/Chapter.dart';
+import 'package:reference_parser_ssai/src/util/VerseEnum.dart';
 import 'package:test/test.dart';
 
 void main() {

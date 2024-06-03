@@ -26,7 +26,7 @@ headers. But if you have more complicated needs this package can handle those!
 
 to include the default exports of reference parser add this to your imports:
 ```dart
-import package:reference_parser/reference_parser.dart`
+import package:reference_parser_ssai/reference_parser.dart`
 ```
 
 ## Parsing References
@@ -52,7 +52,7 @@ This will return "I enjoy reading Genesis 5:7 and 1 Corinthians 2-3."
 ## Identifying References
 import the identification library with:
 
-`import 'package:reference_parser/identification.dart';`
+`import 'package:reference_parser_ssai/identification.dart';`
 
 then identify references like this:
 ```dart

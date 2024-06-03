@@ -1,5 +1,5 @@
-import 'package:reference_parser/reference_parser.dart';
-import 'package:reference_parser/identification.dart';
+import 'package:reference_parser_ssai/reference_parser.dart';
+import 'package:reference_parser_ssai/identification.dart';
 import 'package:test/test.dart';
 
 void main() {

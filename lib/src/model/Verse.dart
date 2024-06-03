@@ -1,6 +1,6 @@
-import 'package:reference_parser/src/util/VerseEnum.dart';
-import 'package:reference_parser/src/data/Librarian.dart';
-import 'package:reference_parser/src/model/BibleReference.dart';
+import 'package:reference_parser_ssai/src/util/VerseEnum.dart';
+import 'package:reference_parser_ssai/src/data/Librarian.dart';
+import 'package:reference_parser_ssai/src/model/BibleReference.dart';
 
 /// A bible reference that contains the book, chapter, and a single verse number.
 ///

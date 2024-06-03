@@ -1,7 +1,7 @@
-import 'package:reference_parser/src/util/VerseEnum.dart';
-import 'package:reference_parser/src/model/Verse.dart';
-import 'package:reference_parser/src/data/Librarian.dart';
-import 'package:reference_parser/src/model/BibleReference.dart';
+import 'package:reference_parser_ssai/src/util/VerseEnum.dart';
+import 'package:reference_parser_ssai/src/model/Verse.dart';
+import 'package:reference_parser_ssai/src/data/Librarian.dart';
+import 'package:reference_parser_ssai/src/model/BibleReference.dart';
 
 /// A reference to a single chapter in the bible.
 ///

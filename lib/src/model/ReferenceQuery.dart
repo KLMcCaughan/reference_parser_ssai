@@ -1,4 +1,4 @@
-import 'package:reference_parser/src/model/Reference.dart';
+import 'package:reference_parser_ssai/src/model/Reference.dart';
 
 /// A query object returned by the [identifyReference()] function.
 ///

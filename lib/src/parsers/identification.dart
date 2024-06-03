@@ -1,5 +1,5 @@
-import 'package:reference_parser/src/parsers/parser.dart';
-import 'package:reference_parser/src/model/ReferenceQuery.dart';
+import 'package:reference_parser_ssai/src/parsers/parser.dart';
+import 'package:reference_parser_ssai/src/model/ReferenceQuery.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'dart:async';

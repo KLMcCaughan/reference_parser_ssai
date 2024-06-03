@@ -1,4 +1,4 @@
-import 'package:reference_parser/reference_parser.dart';
+import 'package:reference_parser_ssai/reference_parser.dart';
 
 void main() {
   //Parse Reference

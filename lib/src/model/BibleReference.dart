@@ -1,5 +1,5 @@
-import 'package:reference_parser/src/util/VerseEnum.dart';
-import 'package:reference_parser/src/data/Librarian.dart';
+import 'package:reference_parser_ssai/src/util/VerseEnum.dart';
+import 'package:reference_parser_ssai/src/data/Librarian.dart';
 
 /// Base class for all reference objects.
 abstract class BibleReference {

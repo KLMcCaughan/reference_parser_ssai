@@ -1,6 +1,6 @@
-import 'package:reference_parser/src/data/Librarian.dart';
-import 'package:reference_parser/src/data/BibleData.dart';
-import 'package:reference_parser/src/model/Reference.dart';
+import 'package:reference_parser_ssai/src/data/Librarian.dart';
+import 'package:reference_parser_ssai/src/data/BibleData.dart';
+import 'package:reference_parser_ssai/src/model/Reference.dart';
 
 final _exp = _createFullRegex();
 
