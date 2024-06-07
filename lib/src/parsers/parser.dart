@@ -57,15 +57,17 @@ String parseReferencesAndReplaceString(String stringReference, {bool ignoreIs = 
     var reference = _createRefFromMatch(x);
     var matchedString = x.group(0);
     if (matchedString != null) {
-      var punct = RegExp(r'[.,;!?]\s*$');
+      var punct = RegExp(r'[.,;!?]$');
+      var spacePunct = RegExp(r'[.,;!?]\s$');
       var replacementString = reference.toString();
 
-      if (punct.hasMatch(matchedString)) {
-        if (matchedString.length > 1) {
-          replacementString += matchedString[matchedString.length - 2];
-        }
+      if (spacePunct.hasMatch(matchedString)) {
+        replacementString += matchedString[matchedString.length - 2] + ' '; // get second to last character (the punctuation)
+      } else if (punct.hasMatch(matchedString)) {
+        replacementString += matchedString[matchedString.length - 1]; // get last character (the punctuation)
+      } else {
+        replacementString += ' '; // just put space
       }
-      replacementString += ' ';
 
       originalString =
           originalString.replaceFirst(matchedString, replacementString);
