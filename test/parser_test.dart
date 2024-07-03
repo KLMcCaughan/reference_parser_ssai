@@ -137,7 +137,6 @@ void main() {
     expect(result.contains('Amos'), true);
     expect(result.contains('Matt 2:4'), false);
     expect(result.contains('jas 5:1-5'), false);
-    expect(result.contains('is'), false);
     expect(result, equals('There Isaiah hope that Matthew 2:4 and James 5:1-5 get parsed. I Amos stoked that this works and will sing a great Song of Solomon about it!'));
   });
 

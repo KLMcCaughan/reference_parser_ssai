@@ -34,15 +34,13 @@ Reference parseReference(String stringReference, {bool ignoreIs = false}) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-List<Reference> parseAllReferences(String stringReference, {bool ignoreIs = true, bool ignoreSong = true}) {
-  if (ignoreIs) {
-    stringReference = stringReference.replaceAll(RegExp(r'\bis\b', caseSensitive: false), '');
-  }
-  if (ignoreSong) {
-    stringReference = stringReference.replaceAll(RegExp(r'\bsong\b', caseSensitive: false), '');
-  }
+List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const []}) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
+  matches = matches.where((x) {
+    var matchedString = x.group(0)?.trim().toLowerCase();
+    return matchedString != null && !excludeList.map((e) => e.toLowerCase()).contains(matchedString);
+  });
   matches.forEach((x) => refs.add(_createRefFromMatch(x)));
   return refs;
 }
