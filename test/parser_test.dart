@@ -129,25 +129,29 @@ void main() {
   });
 
   test('Parsing and replacing references', () {
-    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed');
+    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!');
     expect(result.contains('Matthew 2:4'), true);
     expect(result.contains('James 5:1-5'), true);
     expect(result.contains('Isaiah'), true);
+    expect(result.contains('Song of Solomon'), true);
+    expect(result.contains('Amos'), true);
     expect(result.contains('Matt 2:4'), false);
     expect(result.contains('jas 5:1-5'), false);
     expect(result.contains('is'), false);
-    expect(result, equals('There Isaiah hope that Matthew 2:4 and James 5:1-5 get parsed'));
+    expect(result, equals('There Isaiah hope that Matthew 2:4 and James 5:1-5 get parsed. I Amos stoked that this works and will sing a great Song of Solomon about it!'));
   });
 
-  test('Parsing and replacing references with ignoreIs flag', () {
-    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed', ignoreIs: true);
+  test('Parsing and replacing references with is song and am', () {
+    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!', excludeList: ['is','song','am']);
     expect(result.contains('Matthew 2:4'), true);
     expect(result.contains('James 5:1-5'), true);
     expect(result.contains('Isaiah'), false);
+    expect(result.contains('Song of Solomon'), false);
+    expect(result.contains('Amos'), false);
     expect(result.contains('Matt 2:4'), false);
     expect(result.contains('jas 5:1-5'), false);
     expect(result.contains('is'), true);
-    expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed'));
+    expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!'));
   });
   test('Verify paratexts', () {
     var refs = parseAllReferences('Mat Jam PSA joh');

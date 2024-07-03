@@ -50,8 +50,9 @@ void main() {
 
   var refs =
       parseAllReferences('This is NOT going to get Gen 2:4 and another book', ignoreIs: true);
-  print(refs[0].reference); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
+  print(refs); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
 
-  var x = parseReferencesAndReplaceString('This is going to get Gen 2:4 reference and update the original string.', ignoreIs: true);
+  var x = parseReferencesAndReplaceString('Wow this is going to get Gen 2:4 reference and update the original string. Maybe play a song or two. I am stoked! Is this cool or what?', excludeList: ['is','song','am']);
   print(x);
+
 }

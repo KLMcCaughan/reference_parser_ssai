@@ -1,3 +1,9 @@
+## 1.0.3
+Alter parse and replace function to use a exclusion list.
+
+## 1.0.2
+Fix logic to include punctuation with and without trailing space.
+
 ## 3.0.4
 - Allow parsing books without spaces numerals (i.e ICorinthians)
 
