@@ -34,7 +34,7 @@ Reference parseReference(String stringReference, {bool ignoreIs = false}) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const []}) {
+List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const [], bool ignoreIs: false}) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   matches = matches.where((x) {
@@ -45,7 +45,7 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
   return refs;
 }
 
-String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const []}) {
+String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['is','song','am','songs'], bool ignoreIs: false}) {
   var _exp = _createFullRegex();
   var matches = _exp.allMatches(stringReference);
   var originalString = stringReference;
