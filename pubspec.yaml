@@ -1,7 +1,7 @@
 name: reference_parser_ssai
 description: >-
   Fork of reference_parser. Additional parameters for existing parsers and function for returning original string with refs.
-version: 1.0.2
+version: 1.0.5
 homepage: https://github.com/KLMcCaughan/reference_parser_ssai
 issue_tracker:  https://github.com/KLMcCaughan/reference_parser_ssai/issues
 environment:

@@ -1,8 +1,9 @@
 import 'package:reference_parser_ssai/src/data/Librarian.dart';
 import 'package:reference_parser_ssai/src/data/BibleData.dart';
+import 'package:reference_parser_ssai/src/data/PlaceData.dart';
 import 'package:reference_parser_ssai/src/model/Reference.dart';
 
-final _exp = _createFullRegex();
+final _exp = _createBookRegex();
 
 /// Finds the first reference from within a string.
 ///
@@ -46,7 +47,7 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
 }
 
 String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['is','song','am','songs'], bool ignoreIs: false}) {
-  var _exp = _createFullRegex();
+  var _exp = _createBookRegex();
   var matches = _exp.allMatches(stringReference);
   var originalString = stringReference;
 
@@ -100,7 +101,7 @@ Reference _createRefFromMatch(RegExpMatch match) {
   );
 }
 
-RegExp _createFullRegex() {
+RegExp _createBookRegex() {
   var books = BibleData.bookNames.expand((i) => i).toList();
   books.addAll(BibleData.variants.keys);
   var regBooks = books.map((e) => e.replaceAll(' ', '[ ]?')).join('\\b|\\b');
@@ -109,3 +110,21 @@ RegExp _createFullRegex() {
   var exp = RegExp(expression, caseSensitive: false);
   return exp;
 }
+
+/// Finds all the places within a string. Returns an empty
+  /// list when no places are found.
+  ///
+  /// ```dart
+  /// parsePlace('I visited Jerusalem and Damascus.');
+  /// ```
+  /// Returns a list of matched places.
+   List<String> parsePlace(String stringReference) {
+    var matchedPlaces = <String>[];
+    var normalizedString = stringReference.toLowerCase();
+    PlaceData.places.forEach((place) {
+      if (normalizedString.contains(place.toLowerCase())) {
+        matchedPlaces.add(place);
+      }
+    });
+    return matchedPlaces;
+  }
