@@ -152,6 +152,8 @@ void main() {
     expect(result.contains('is'), true);
     expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!'));
   });
+
+
   test('Verify paratexts', () {
     var refs = parseAllReferences('Mat Jam PSA joh');
     refs.forEach((x) {

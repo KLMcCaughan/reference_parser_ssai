@@ -17,7 +17,7 @@ void main() {
   print(ref.reference); // 'Song of Solomon 2:1'
 
   //Range of verses
-  ref = parseReference('My name is Gen 4:5-10', ignoreIs: true);
+  ref = parseReference('My name is Gen 4:5-10');
   print(ref.reference); // 'Genesis 4:5-10'
   print(ref.startVerseNumber); // 5
   print(ref.endVerseNumber); // 10
@@ -48,11 +48,13 @@ void main() {
   print(ref.startVerseNumber); // 4
   print(ref.endVerseNumber); // 5
 
+  // References that exclude common words ('is','song','am','songs')
   var refs =
-      parseAllReferences('This is NOT going to get Gen 2:4 and another book', ignoreIs: true);
-  print(refs); // ['Isaiah', 'Genesis 2:4'], 'is' will be parsed as Isaiah
+      parseAllReferences('This is NOT going to get Gen 2:4 and another book');
+  print(refs); // ['Genesis 2:4'], 'is' will be parsed as Isaiah
 
-  var x = parseReferencesAndReplaceString('Wow this is going to get Gen 2:4 reference and update the original string. Maybe play a song or two. I am stoked! Is this cool or what?', excludeList: ['is','song','am']);
-  print(x);
+  var x = parseReferencesAndReplaceString('Wow this is going to get Gen 2:4 reference and update the original string. I am stoked! Is this cool or what? I may play a song to celebrate.', excludeList: ['is','song','am']);
+  print(x); // Wow this is going to get Genesis 2:4 reference and update the original string. I am stoked! Is this cool or what? I may play a song to celebrate.
+
 
 }

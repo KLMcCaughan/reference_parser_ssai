@@ -1,3 +1,6 @@
+## 1.0.6
+Additional places
+
 ## 1.0.5
 Add a function for finding Biblical places in a string.
 

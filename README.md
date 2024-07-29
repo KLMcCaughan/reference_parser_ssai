@@ -20,6 +20,7 @@ headers. But if you have more complicated needs this package can handle those!
   * [Constructing References](#constructing-references)
     + [Invalid References](#invalid-references)
   * [Other Fun Stuff](#other-fun-stuff)
+  * [SSAI Fork Specific](#ssai-fork)
 <!-- tocstop -->
 
 # Usage
@@ -40,14 +41,14 @@ This will return a reference object describing 'Matthew 2:4-10'.
 use the `parseAllReference` to retrieve all references within a string.
 
 ```dart
-var refs = parseAllReferences('I enjoy reading Gen 5:7 and 1Co 2-3', ignoreIs: true);
+var refs = parseAllReferences(' Gen 5:7 is fun to read.');
 ```
 **Note**: The word 'is' will NOT be parsed as the book of Isaiah.
 
 ```dart
-var refs = parseReferencesAndReplaceString('I enjoy reading Gen 5:7 and 1Co 2-3.', ignoreIs: true);
+var refs = parseReferencesAndReplaceString('Gen 5:7 is fun to read.');
 ```
-This will return "I enjoy reading Genesis 5:7 and 1 Corinthians 2-3."
+This will return "Genesis 5:7 is fun to read."
 
 ## Identifying References
 import the identification library with:
@@ -195,3 +196,31 @@ ref.verses // returns a list of verse objects within this reference. There's Als
 ref.chapters // each chapter
 ref.osisReference // the osis representation (there's also short, and abbr)
 ```
+## SSAI Fork
+This fork includes a few modifications to the original package.
+### Exclusion of common words
+Common words will now be excluded by default. "is", "am", "song", and "songs" were being flagged as references for "Isaiah", "Songs of Solomon", "Amos", and "Songs of Solomon" respectively.
+### Replace string with parsed references
+```dart
+var ref = parseReference("I like Mat 2:4-10 and John 3:1");
+```
+This will return a reference object describing 'Matthew 2:4-10'.
+
+use the `parseAllReference` to retrieve all references within a string.
+
+```dart
+var refs = parseAllReferences(' Gen 5:7 is fun to read.');
+```
+**Note**: The word 'is' will NOT be parsed as the book of Isaiah.
+
+```dart
+var refs = parseReferencesAndReplaceString('Gen 5:7 is fun to read.');
+```
+This will return "Genesis 5:7 is fun to read."
+
+Pass `excludeList: ['strings','to','ignore']` as second argument to either function to exclude custom strings.
+### Place parser
+```dart
+parsePlace('I visited Jerusalem and Damascus and Allammelech and Mississippi.'); //Returns ['Jerusalem','Damascus','Allammelech']
+```
+

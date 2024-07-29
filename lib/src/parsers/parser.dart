@@ -15,10 +15,7 @@ final _exp = _createBookRegex();
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-Reference parseReference(String stringReference, {bool ignoreIs = false}) {
-  if (ignoreIs) {
-    stringReference = stringReference.replaceAll(RegExp(r'\bis\b', caseSensitive: false), '');
-  }
+Reference parseReference(String stringReference) {
   var match = _exp.firstMatch(stringReference);
   if (match == null) return Reference('');
   return _createRefFromMatch(match);
@@ -35,7 +32,7 @@ Reference parseReference(String stringReference, {bool ignoreIs = false}) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const [], bool ignoreIs: false}) {
+List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const []}) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   matches = matches.where((x) {
@@ -46,7 +43,7 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
   return refs;
 }
 
-String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['is','song','am','songs'], bool ignoreIs: false}) {
+String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['is','song','am','songs']}) {
   var _exp = _createBookRegex();
   var matches = _exp.allMatches(stringReference);
   var originalString = stringReference;
