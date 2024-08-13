@@ -32,25 +32,25 @@ Reference parseReference(String stringReference) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const []}) {
+List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts']}) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   matches = matches.where((x) {
-    var matchedString = x.group(0)?.trim().toLowerCase();
-    return matchedString != null && !excludeList.map((e) => e.toLowerCase()).contains(matchedString);
+    var matchedString = x.group(0)?.trim();
+    return matchedString != null && !excludeList.map((e) => e).contains(matchedString);
   });
   matches.forEach((x) => refs.add(_createRefFromMatch(x)));
   return refs;
 }
 
-String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['is','song','am','songs']}) {
+String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts']}) {
   var _exp = _createBookRegex();
   var matches = _exp.allMatches(stringReference);
   var originalString = stringReference;
 
   matches = matches.where((x) {
-    var matchedString = x.group(0)?.trim().toLowerCase();
-    return matchedString != null && !excludeList.map((e) => e.toLowerCase()).contains(matchedString);
+    var matchedString = x.group(0)?.trim();
+    return matchedString != null && !excludeList.map((e) => e).contains(matchedString);
   });
 
   matches.forEach((x) {

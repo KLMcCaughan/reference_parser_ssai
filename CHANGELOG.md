@@ -1,4 +1,7 @@
 ## 1.0.6
+Handle "act(s)" in string.
+
+## 1.0.6
 Additional places
 
 ## 1.0.5

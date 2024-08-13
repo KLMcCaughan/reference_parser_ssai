@@ -115,8 +115,8 @@ void main() {
     expect(mat.startChapterNumber, equals(2));
     expect(mat.startVerseNumber, equals(4));
 
-    refs = parseAllReferences('is is still parsed');
-    expect(refs.length, equals(2));
+    refs = parseAllReferences('"is" is not parsed');
+    expect(refs.length, equals(0));
 
     expect(jam.book, equals('James'));
     expect(jam.startChapterNumber, equals(5));
@@ -138,10 +138,12 @@ void main() {
     expect(result.contains('Matt 2:4'), false);
     expect(result.contains('jas 5:1-5'), false);
     expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!'));
+    
+    print(result);
   });
 
-  test('Parsing and replacing references with is song and am', () {
-    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!', excludeList: ['is','song','am']);
+  test('Parsing and replacing references with "is", "song", "am" and "acts"!', () {
+    String result = parseReferencesAndReplaceString('There is hope that Matt 2:4 and jas 5:1-5 get parsed. I will act like a bard and sing a great song about it!', excludeList: ['is','song','am', 'act']);
     expect(result.contains('Matthew 2:4'), true);
     expect(result.contains('James 5:1-5'), true);
     expect(result.contains('Isaiah'), false);
@@ -150,7 +152,9 @@ void main() {
     expect(result.contains('Matt 2:4'), false);
     expect(result.contains('jas 5:1-5'), false);
     expect(result.contains('is'), true);
-    expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed. I am stoked that this works and will sing a great song about it!'));
+    expect(result.contains('act'), true);
+    expect(result.contains('Acts'), false);
+    expect(result, equals('There is hope that Matthew 2:4 and James 5:1-5 get parsed. I will act like a bard and sing a great song about it!'));
   });
 
 
