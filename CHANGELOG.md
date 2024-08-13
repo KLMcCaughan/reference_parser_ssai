@@ -1,4 +1,4 @@
-## 1.0.6
+## 1.0.7
 Handle "act(s)" in string.
 
 ## 1.0.6
