@@ -1,3 +1,6 @@
+## 1.0.8
+Excluded words followed by numbers no longer seen as references.
+
 ## 1.0.7
 Handle "act(s)" in string.
 

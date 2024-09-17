@@ -37,11 +37,15 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
   var matches = _exp.allMatches(stringReference);
   matches = matches.where((x) {
     var matchedString = x.group(0)?.trim();
-    return matchedString != null && !excludeList.map((e) => e).contains(matchedString);
+
+    // Check if any of the excluded words are contained in the matchedString
+    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: false)));
   });
+  
   matches.forEach((x) => refs.add(_createRefFromMatch(x)));
   return refs;
 }
+
 
 String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts']}) {
   var _exp = _createBookRegex();
@@ -50,11 +54,11 @@ String parseReferencesAndReplaceString(String stringReference, {List<String> exc
 
   matches = matches.where((x) {
     var matchedString = x.group(0)?.trim();
-    return matchedString != null && !excludeList.map((e) => e).contains(matchedString);
+    // Check if any of the excluded words are contained in the matchedString
+    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: false)));
   });
 
   matches.forEach((x) {
-    // print(x.group(0));
     var reference = _createRefFromMatch(x);
     var matchedString = x.group(0);
     if (matchedString != null) {
@@ -70,13 +74,13 @@ String parseReferencesAndReplaceString(String stringReference, {List<String> exc
         replacementString += ' '; // just put space
       }
 
-      originalString =
-          originalString.replaceFirst(matchedString, replacementString);
+      originalString = originalString.replaceFirst(matchedString, replacementString);
     }
   });
 
   return originalString;
 }
+
 Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4, 5]);
   var book = pr[1]!.replaceAllMapped(RegExp(r'(\d+)\s?'), (match) {
