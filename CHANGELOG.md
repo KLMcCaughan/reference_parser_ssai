@@ -1,3 +1,6 @@
+## 1.0.9
+Make exclusion case sensitive.
+
 ## 1.0.8
 Excluded words followed by numbers no longer seen as references.
 

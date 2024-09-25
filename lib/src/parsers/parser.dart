@@ -39,7 +39,7 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
     var matchedString = x.group(0)?.trim();
 
     // Check if any of the excluded words are contained in the matchedString
-    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: false)));
+    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: true)));
   });
   
   matches.forEach((x) => refs.add(_createRefFromMatch(x)));
@@ -55,7 +55,7 @@ String parseReferencesAndReplaceString(String stringReference, {List<String> exc
   matches = matches.where((x) {
     var matchedString = x.group(0)?.trim();
     // Check if any of the excluded words are contained in the matchedString
-    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: false)));
+    return matchedString != null && !excludeList.any((e) => matchedString.contains(RegExp(r'\b' + e + r'\b', caseSensitive: true)));
   });
 
   matches.forEach((x) {
