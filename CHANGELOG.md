@@ -1,3 +1,6 @@
+## 1.0.10
+Fix bug where references with "." following would error.
+
 ## 1.0.9
 Make exclusion case sensitive.
 
