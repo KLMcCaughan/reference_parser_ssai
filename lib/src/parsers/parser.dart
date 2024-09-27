@@ -85,7 +85,7 @@ Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4, 5]);
   var book = pr[1]!.replaceAllMapped(RegExp(r'(\d+)\s?'), (match) {
     return '${match.group(1)} ';
-  })?.trim();
+  }).trim();
 // print(pr[0]);
 // print("${book}test");
 // print(pr[2]);
