@@ -32,7 +32,7 @@ Reference parseReference(String stringReference) {
 ///
 /// **Note**: The word 'is' will be parsed as the book of Isaiah.
 /// An efficient workaround is in the works.
-List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts']}) {
+List<Reference> parseAllReferences(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts', 'mark']}) {
   var refs = <Reference>[];
   var matches = _exp.allMatches(stringReference);
   matches = matches.where((x) {
@@ -47,7 +47,7 @@ List<Reference> parseAllReferences(String stringReference, {List<String> exclude
 }
 
 
-String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts']}) {
+String parseReferencesAndReplaceString(String stringReference, {List<String> excludeList = const ['Is','is','Song','song','Am','am','songs','act','acts', 'mark']}) {
   var _exp = _createBookRegex();
   var matches = _exp.allMatches(stringReference);
   var originalString = stringReference;
@@ -85,10 +85,16 @@ Reference _createRefFromMatch(RegExpMatch match) {
   var pr = match.groups([0, 1, 2, 3, 4, 5]);
   var book = pr[1]!.replaceAllMapped(RegExp(r'(\d+)\s?'), (match) {
     return '${match.group(1)} ';
-  });
+  })?.trim();
+// print(pr[0]);
+// print("${book}test");
+// print(pr[2]);
+// print(pr[3]);
+// print(pr[4]);
+// print(pr[5]);
 
   return Reference(
-    Librarian.getBookNames(book)['name'] ?? pr[1]!,
+    Librarian.getBookNames(book)['name']?.trim() ?? pr[1]!,
     pr[2] == null ? null : int.parse(pr[2]!),
     pr[3] == null ? null : int.parse(pr[3]!),
     pr[4] != null && (pr[3] == null || pr[5] != null)
@@ -105,7 +111,8 @@ Reference _createRefFromMatch(RegExpMatch match) {
 RegExp _createBookRegex() {
   var books = BibleData.bookNames.expand((i) => i).toList();
   books.addAll(BibleData.variants.keys);
-  var regBooks = books.map((e) => e.replaceAll(' ', '[ ]?')).join('\\b|\\b');
+  var regBooks = books.map((e) => e.replaceAll(' ', '[ ]?')).join('\\b\\.?|\\b');
+  // print(regBooks);
   var expression =
       '(\\b$regBooks\\b) *(\\d+)?[ :.]*(\\d+)?[— -]*(\\d+)?[ :.]*(\\d+)?';
   var exp = RegExp(expression, caseSensitive: false);
@@ -122,10 +129,16 @@ RegExp _createBookRegex() {
    List<String> parsePlace(String stringReference) {
     var matchedPlaces = <String>[];
     var normalizedString = stringReference.toLowerCase();
+
     PlaceData.places.forEach((place) {
-      if (normalizedString.contains(place.toLowerCase())) {
-        matchedPlaces.add(place);
-      }
+        // Use word boundaries to ensure whole word matches
+        var placePattern = RegExp(r'\b' + RegExp.escape(place.toLowerCase()) + r'\b');
+
+        // If the pattern matches in the normalized string, add the place to matched places
+        if (placePattern.hasMatch(normalizedString)) {
+            matchedPlaces.add(place);
+        }
     });
+
     return matchedPlaces;
-  }
+}
